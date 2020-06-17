@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/**Auhtentification systeme */
+/**Auhtentification systeme middleware*/
 Auth::routes();
 
 /**DashBoard */

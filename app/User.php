@@ -48,4 +48,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Profile');
     }
+
+    /**User Can have Many Post */
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
 }
