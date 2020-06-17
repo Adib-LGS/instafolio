@@ -24,3 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /**RestFull Pathern for the Controllers */
 Route::get('/profiles/{user}', 'ProfileController@show')->name('profiles.show');
+
+/**Post Route */
+Route::get('/posts/create', 'PostController@create')->name('posts.create');
+Route::post('/posts', 'PostController@store')->name('posts.store');
