@@ -11,6 +11,7 @@
 |
 */
 
+//Route::view('/', 'welcome'); Version optimiser 
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,4 +23,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 /**RestFull Pathern for the Controllers */
-Route::get('/profiles/{username}', 'ProfileController@show')->name('profiles.show');
+Route::get('/profiles/{user}', 'ProfileController@show')->name('profiles.show');
