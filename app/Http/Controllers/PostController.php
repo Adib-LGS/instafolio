@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**Have to be Authentificated to do Posts Action */
+    /**User Have to be Authentificated to Post Image */
     public function __construct()
     {
         $this->middleware('auth');
@@ -17,4 +17,18 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
+
+    public function store()
+    {
+        request()->validate([
+            'caption' => ['required', 'string'],
+            'image' => ['required', 'image']
+        ]);
+
+        //dd(request('image')); to check if instance exist, then create store func
+
+        request('image')->store('uploads', 'public');
+    }
+
+    
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    
     /**Type int User via User.php  getRouteKeyName() */
     public function show(User $user)
     {
