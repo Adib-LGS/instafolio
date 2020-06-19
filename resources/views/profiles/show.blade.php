@@ -12,7 +12,7 @@
                             <button class="btn btn-primary btn-sm ">S'abonner</button>
                         </div>
                         <div class="d-flex mt-3">
-                            <div class="mr-3"><strong>{{ $user->posts->count() }}</strong> publications</div>
+                            <div class="mr-3"><strong>{{ $user->posts->count() }}</strong>@if($user->posts->count() > 1) publications @else publication @endif</div>
                             <div class="mr-3"><strong>0</strong> abonnés</div>
                             <div class="mr-3"><strong>0</strong> abonnement</div>
                         </div>
@@ -27,7 +27,9 @@
                 <div class="row mt-5">
                     @foreach($user->posts as $post)
                     <div class="col-5">
+                        <a href="{{ route('posts.show', ['post' => $post->id]) }}">
                         <img src="{{ asset('storage') . '/' . $post->image }}" class="w-100">
+                        </a>
                     </div>
                     @endforeach
                 </div>

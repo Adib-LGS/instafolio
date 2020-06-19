@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,10 +13,8 @@
 |
 */
 
-//Route::view('/', 'welcome'); Version optimiser 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
+
 
 /**Auhtentification systeme middleware*/
 Auth::routes();
@@ -28,4 +28,4 @@ Route::get('/profiles/{user}', 'ProfileController@show')->name('profiles.show');
 /**Post Route */
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
 Route::post('/posts', 'PostController@store')->name('posts.store');
-
+Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
