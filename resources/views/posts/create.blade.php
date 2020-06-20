@@ -10,7 +10,7 @@
                     <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="name" >Caption</label>
+                            <label for="caption" >Caption</label>
                                 <input id="caption" type="text" class="form-control @error('caption') is-invalid @enderror" name="caption" value="{{ old('caption') }}"  autocomplete="name" autofocus>
 
                                 @error('caption')

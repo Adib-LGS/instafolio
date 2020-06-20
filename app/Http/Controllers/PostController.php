@@ -37,6 +37,7 @@ class PostController extends Controller
         //Using Intervention Image library + Facades to resize Image
         $image = Image::make(public_path("/storage/{$imagePath}"))->fit(1000, 1000);
         $image->save();
+        
         //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
         auth()->user()->posts()->create([
             'caption' => $data['caption'],

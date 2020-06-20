@@ -16,6 +16,7 @@
                             <div class="mr-3"><strong>0</strong> abonnés</div>
                             <div class="mr-3"><strong>0</strong> abonnement</div>
                         </div>
+                            <a href="{{ route('profiles.edit', ['user' => $user->username]) }}" class="btn btn-info btn-sm mt-3">Edit Information</a>
                         <div class="mt-3">
                             <div class="font-weight-bold">{{ $user->profile->title }}</div>
                             <div>{{ $user->profile->description }}</div>

@@ -24,6 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /**RestFull Pathern for the Controllers */
 Route::get('/profiles/{user}', 'ProfileController@show')->name('profiles.show');
+Route::get('/profiles/{user}/edit', 'ProfileController@edit')->name('profiles.edit');
+Route::patch('/profiles/{user}', 'ProfileController@update')->name('profiles.update');
 
 /**Post Route */
 Route::get('/posts/create', 'PostController@create')->name('posts.create');

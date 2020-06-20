@@ -53,7 +53,7 @@ class LoginController extends Controller
     protected function authenticated($request, $user)
     {   
         if(auth()->user()){
-            return redirect()->route('profiles.show', ['user' => auth()->user()]);
+            return redirect()->route('profiles.show', ['user' => $user]);
         }
     }
     
