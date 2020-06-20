@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Access\Response;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class ProfileController extends Controller
 {
@@ -20,18 +22,21 @@ class ProfileController extends Controller
 
     public function edit(User $user)
     {
+        //PolicyProfile
+        $this->authorize('update', $user->profile);
         return view('profiles.edit', compact('user'));
     }
 
     public function update(User $user)
     {
+        $this->authorize('update', $user->profile);
         $data = request()->validate([
             'title' => 'required',
             'description' => 'required',
             'url' => 'required|url'
         ]);
 
-        auth()->$user->profile->update($data);
+        $user->profile->update($data);
 
         return redirect()->route('profiles.show', ['user' => $user]);
     }
