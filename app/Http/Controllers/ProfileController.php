@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Auth\Access\AuthorizationException;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -24,19 +25,34 @@ class ProfileController extends Controller
     {
         //PolicyProfile
         $this->authorize('update', $user->profile);
+
         return view('profiles.edit', compact('user'));
     }
 
     public function update(User $user)
     {
         $this->authorize('update', $user->profile);
+
         $data = request()->validate([
             'title' => 'required',
             'description' => 'required',
-            'url' => 'required|url'
+            'url' => 'required|url',
+            'image' => 'sometimes|image|max:2500'
         ]);
 
-        $user->profile->update($data);
+        
+        if(request('image')){
+            $imagePath = request('image')->store('avatrs', 'public');
+            $image = Image::make(public_path("/storage/{{ $imagePath }}"))->fit(800,800);
+            $image->save();
+
+            $user->profile->update(array_merge(
+                $data,
+                ['image' => $imagePath]
+            ));
+        }else{
+            $user->profile->update($data);
+        }
 
         return redirect()->route('profiles.show', ['user' => $user]);
     }

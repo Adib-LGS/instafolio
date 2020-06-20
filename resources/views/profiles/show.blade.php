@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row mt-4">
                     <div class="col-4">
-                        <img src="https://otakuusamagazine.com/wp-content/uploads/2018/08/nl-jet-black-cowboy-bebop.jpg" class="rounded-circle" width="150px" height="150px">
+                        <img src="{{ $user->profile->getImage() }}" class="rounded-circle" width="150px" height="150px">
                     </div>
                     <div class="col-8">
                         <div class="d-flex align-items-baseline">

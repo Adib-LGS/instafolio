@@ -53,7 +53,6 @@ class ProfilePolicy
      */
     public function update(User $user, Profile $profile)
     {
-        //Only Auth User can Update his own Profile
         return $user->username === $profile->user->username;
     }
 
@@ -66,7 +65,7 @@ class ProfilePolicy
      */
     public function delete(User $user, Profile $profile)
     {
-        //
+        return $user->username === $profile->user->username;
     }
 
     /**

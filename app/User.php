@@ -37,7 +37,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**Return the right user by username request*/
+    /**
+     * Create defaut Pofile for New User
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function($user){
+            $user->profile->create([
+                'title' => 'Hey welcome ' . $user->username
+            ]);
+        });
+    }
+
+
+    /**
+     * Return the right user by username request
+     * */
     public function getRouteKeyName()
     {
         return 'username';
