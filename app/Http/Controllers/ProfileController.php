@@ -15,9 +15,7 @@ class ProfileController extends Controller
     public function show(User $user)
     {
         /**Get the right user Eloquent User $user replace code bellow*/
-        //$user = User::find($username);
-        //dd($user);
-
+        
         return view('profiles.show', compact('user'));
     }
 
