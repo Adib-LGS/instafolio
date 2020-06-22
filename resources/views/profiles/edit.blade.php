@@ -46,7 +46,7 @@
                                 <div class="form-group">
                                     <div class="custom-file">
                                         <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="validatedCustomFile">
-                                        <label class="custom-file-label" for="validatedCustomFile">Save Edit</label>
+                                        <label class="custom-file-label" for="validatedCustomFile">Add Profile Image</label>
                                         @error('image')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

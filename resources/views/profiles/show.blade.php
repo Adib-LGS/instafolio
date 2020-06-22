@@ -17,7 +17,7 @@
                             <div class="mr-3"><strong>0</strong> abonnement</div>
                         </div>
                             @can('update', $user->profile)
-                            <a href="{{ route('profiles.edit', ['user' => $user->username]) }}" class="btn btn-info btn-sm mt-3">Edit Information</a>
+                            <a href="{{ route('profiles.edit', ['user' => $user->username]) }}" class="btn btn-info btn-sm mt-3">Edit Profile</a>
                             @endcan
                         <div class="mt-3">
                             <div class="font-weight-bold">{{ $user->profile->title }}</div>

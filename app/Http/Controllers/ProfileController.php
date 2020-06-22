@@ -14,8 +14,6 @@ class ProfileController extends Controller
     /**Type int User via User.php  getRouteKeyName() */
     public function show(User $user)
     {
-        /**Get the right user Eloquent User $user replace code bellow*/
-        
         return view('profiles.show', compact('user'));
     }
 
@@ -35,13 +33,13 @@ class ProfileController extends Controller
             'title' => 'required',
             'description' => 'required',
             'url' => 'required|url',
-            'image' => 'sometimes|image|max:2500'
+            'image' => 'sometimes|image|max:2500|mimes:jpeg,bmp,png'
         ]);
 
         
         if(request('image')){
-            $imagePath = request('image')->store('avatrs', 'public');
-            $image = Image::make(public_path("/storage/{{ $imagePath }}"))->fit(800,800);
+            $imagePath = request('image')->store('avatars', 'public');
+            $image = Image::make(public_path("/storage/{$imagePath}"))->fit(800,800);
             $image->save();
 
             $user->profile->update(array_merge(
