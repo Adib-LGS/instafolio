@@ -9,12 +9,12 @@
                     <div class="col-8">
                         <div class="d-flex align-items-baseline">
                             <div class="h4 mr-3 pt-2">{{ $user->username }}</div>
-                            <button class="btn btn-primary btn-sm ">S'abonner</button>
+                            <follow-button profile-id="{{ $user->profile->id }}" follows="{{ $follows }}"></follow-button>
                         </div>
                         <div class="d-flex mt-3">
-                            <div class="mr-3"><strong>{{ $user->posts->count() }}</strong>@if($user->posts->count() > 1) publications @else publication @endif</div>
-                            <div class="mr-3"><strong>0</strong> abonnés</div>
-                            <div class="mr-3"><strong>0</strong> abonnement</div>
+                            <div class="mr-3"><strong>{{ $user->posts->count() }}</strong>@if($user->posts->count() > 1) posts @else post @endif</div>
+                            <div class="mr-3"><strong>{{ $user->profile->followers->count() }}</strong> followers</div>
+                            <div class="mr-3"><strong>{{ $user->following->count() }}</strong> following</div>
                         </div>
                             @can('update', $user->profile)
                             <a href="{{ route('profiles.edit', ['user' => $user->username]) }}" class="btn btn-info btn-sm mt-3">Edit Profile</a>

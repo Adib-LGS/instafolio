@@ -8,13 +8,22 @@ use Illuminate\Auth\Access\Response;
 use Illuminate\Auth\Access\AuthorizationException;
 use Intervention\Image\Facades\Image;
 
+
 class ProfileController extends Controller
 {
     
     /**Type int User via User.php  getRouteKeyName() */
     public function show(User $user)
     {
-        return view('profiles.show', compact('user'));
+        $follows = auth()->user(); //? auth()->user()->following->contains($user->profile->id) : false;
+        
+        if($follows){
+            //dd($follows);
+            auth()->user()->following->contains($user->profile->id);
+        }else{
+            return false;
+        }
+        return view('profiles.show', compact('user', 'follows'));
     }
 
     public function edit(User $user)
