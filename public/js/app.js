@@ -1921,7 +1921,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ['profileId', 'follows'],
   data: function data() {
     return {
-      status: this.follows
+      status: this.follows //Way to Edit follows props
+
     };
   },
   methods: {
@@ -1931,7 +1932,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log('follow-Me');
       axios.post('/follows/' + this.profileId).then(function (response) {
         console.log(response.data);
-        _this.status = !_this.status;
+        _this.status = !_this.status; //Dynamique Follow Unfollow Btn Changing
       })["catch"](function (errors) {
         if (errors.response.status === 401) {
           window.location = '/login';
@@ -1942,15 +1943,7 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     follow: function follow() {
       console.log('Unfollow-me');
-
-      if (this.status >= 1) {
-        return 'Unfollow';
-      } else if (this.status == false) {
-        return 'UnFollow';
-      } else {
-        return 'Follow';
-      } //return (this.status) ? 'Unfollow' : 'Follow'
-
+      return this.status ? 'Unfollow' : 'Follow';
     }
   }
 });

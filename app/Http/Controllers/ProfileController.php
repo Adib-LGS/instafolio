@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Auth\Access\Response;
-use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 
 
@@ -15,15 +14,31 @@ class ProfileController extends Controller
     /**Type int User via User.php  getRouteKeyName() */
     public function show(User $user)
     {
-        $follows = auth()->user(); //? auth()->user()->following->contains($user->profile->id) : false;
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->profile->id) : false;
         
-        if($follows){
-            //dd($follows);
-            auth()->user()->following->contains($user->profile->id);
-        }else{
-            return false;
-        }
-        return view('profiles.show', compact('user', 'follows'));
+        //Putting Count on Cache to avoid calculate each time we're refreshing the page
+        $postCount = Cache::remember(
+            'count.posts.' . $user->id, 
+            now()->addSeconds(30), 
+            function () use ($user) {
+                return $user->posts->count();
+            });
+
+        $followersCount = Cache::remember(
+            'count.followers.' . $user->id,
+            now()->addSeconds(30),
+            function () use ($user) {
+                return $user->profile->followers->count();
+            });
+
+        $followingCount = Cache::remember(
+            'count.following' . $user->id,
+            now()->addSeconds(30),
+            function () use ($user) {
+                return $user->following->count();
+            });
+
+        return view('profiles.show', compact('user', 'follows', 'postCount', 'followersCount', 'followingCount'));
     }
 
     public function edit(User $user)

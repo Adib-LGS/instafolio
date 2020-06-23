@@ -14,7 +14,7 @@
 
         data: function () {
             return {
-                status: this.follows
+                status: this.follows //Way to Edit follows props
             }
         },
 
@@ -25,7 +25,7 @@
                 axios.post('/follows/' + this.profileId)
                 .then(response => {
                    console.log(response.data)
-                   this.status = !this.status 
+                   this.status = !this.status //Dynamique Follow Unfollow Btn Changing
                 })
                 .catch(errors => {
                     if(errors.response.status === 401) {
@@ -38,14 +38,8 @@
         computed: {
             follow() {
                 console.log('Unfollow-me');
-                if(this.status >= 1){
-                    return 'Unfollow'
-                } else if(this.status == false) {
-                    return 'UnFollow'
-                }else{
-                    return 'Follow'
-                }
-                //return (this.status) ? 'Unfollow' : 'Follow'
+                
+                return (this.status) ? 'Unfollow' : 'Follow'
             }
         }
     }
