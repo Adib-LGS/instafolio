@@ -14,12 +14,10 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
-
     public function create()
     {
         return view('posts.create');
     }
-
 
     public function store()
     {
@@ -54,5 +52,13 @@ class PostController extends Controller
         return view('posts.show', compact('post'));
     }
 
+    public function index()
+    {
+        //Pluck = get user_id profile followed
+        $users = auth()->user()->following->pluck('user_id');
+        $posts = Post::whereIn('user_id', $users)->latest()->paginate(6); //lastest == order_by DESC
+        //dd($posts);
+        return view('posts.index', compact('posts'));
+    }
     
 }

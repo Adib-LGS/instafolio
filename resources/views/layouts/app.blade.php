@@ -54,6 +54,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a href="{{ route('posts.create') }}" class="dropdown-item">Add Post</a>
+                                    <a href="{{ route('profiles.show', ['user' => Auth::user()->name]) }}" class="dropdown-item">My Profile</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
