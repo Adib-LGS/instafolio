@@ -10,4 +10,10 @@
         <p>{{ $post->caption }}</p>
     </div>
 </div>
+
+<form method="POST" action="{{ route('posts.destroy', '$post->image') }}" >
+                        @csrf
+                        @method('DELETE')
+                           <input type="submit" class="btn btn-sm btn-danger" value="Delete"></input>
+                    </form>
 @endsection
