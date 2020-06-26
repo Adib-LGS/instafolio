@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Post;
 use App\Profile;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -63,7 +64,7 @@ class ProfilePolicy
      * @param  \App\Profile  $profile
      * @return mixed
      */
-    public function delete(User $user, Profile $profile)
+    public function delete(User $user, Profile $profile, Post $post)
     {
         return $user->username === $profile->user->username;
     }

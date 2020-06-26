@@ -4,12 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Instafolio</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <!-- Styles -->
+        
         <style>
             html, body {
                 background-color: #fff;
@@ -68,7 +69,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Actuality</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -81,8 +82,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Instafolio
                 </div>
+
+                @include('partials.search')
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

@@ -22,8 +22,9 @@ Auth::routes();
 /**DashBoard */
 Route::get('/home', 'HomeController@index')->name('home');
 
-/**RestFull Pathern for the Controllers */
+/**Profile Route */
 Route::get('/profiles/{user}', 'ProfileController@show')->name('profiles.show');
+Route::get('/search', 'ProfileController@search')->name('profiles.search');
 Route::get('/profiles/{user}/edit', 'ProfileController@edit')->name('profiles.edit');
 Route::patch('/profiles/{user}', 'ProfileController@update')->name('profiles.update');
 

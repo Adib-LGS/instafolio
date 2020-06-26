@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -61,18 +62,18 @@ class PostController extends Controller
     }
 
 
-    public function destroy(Post $post)
+    public function destroy(User $user, Post $post)
     {
-        
+        $this->authorize('delete', $user->profile);
 
-        $data = request()->hasFile([
-            'caption' => ['required', 'string'],
-            'image' => ['required', 'image']
+        $data = request()->validate([
+            'caption' => ['string'],
+            'image' => [ 'image']
         ]);
         
         $imagePath = request('image')->file_exists('uploads', 'public');
         
-        //If FileName === Null
+        
         if(!empty($imagePath)){
             $post->auth()->user()->posts()->delete([
                 'caption' => $data['caption'],

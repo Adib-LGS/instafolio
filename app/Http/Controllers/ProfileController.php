@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use illuminate\Support\Facades\Cache;
@@ -57,5 +58,21 @@ class ProfileController extends Controller
         }
 
         return redirect()->route('profiles.show', ['user' => $user]);
+    }
+
+    public function search(User $user)
+    {
+        request()->validate([
+           'q' => 'required'
+        ]);
+
+       $q = request()->input('q');
+
+       $user = User::where('username', 'like', "%$q%")->get('username');
+
+       dd($user);
+
+       //return redirect()->route('profiles.show', ['user' => $user]);
+        
     }
 }
