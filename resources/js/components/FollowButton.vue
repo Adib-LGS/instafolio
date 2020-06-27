@@ -38,7 +38,6 @@
         computed: {
             follow() {
                 console.log('Unfollow-me');
-                
                 return (this.status) ? 'Unfollow' : 'Follow'
             }
         }

@@ -64,7 +64,7 @@ class ProfilePolicy
      * @param  \App\Profile  $profile
      * @return mixed
      */
-    public function delete(User $user, Profile $profile, Post $post)
+    public function delete(User $user, Profile $profile)
     {
         return $user->username === $profile->user->username;
     }

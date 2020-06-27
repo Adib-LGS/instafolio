@@ -66,22 +66,38 @@ class PostController extends Controller
     {
         $this->authorize('delete', $user->profile);
 
-        $data = request()->validate([
+       
+        $data = request()->hasFile([
             'caption' => ['string'],
-            'image' => [ 'image']
+            'image' => ['image']
         ]);
         
-        $imagePath = request('image')->file_exists('uploads', 'public');
+        $post = Post::findOrFail($data);
         
-        
-        if(!empty($imagePath)){
-            $post->auth()->user()->posts()->delete([
+
+        if(!empty(request('image')) ) {
+            $imagePath = request('image')->file_exists('uploads', 'public');
+            $image = unlink(public_path("/storage/{$imagePath}"));
+            $image->delete();
+
+            $user->profile->$post->delete([
                 'caption' => $data['caption'],
                 'image' => $imagePath
-            ]);   
+            ]);
         }
+
         
-        return redirect()->route('profiles.show', ['user' => auth()->user()]);
+        
+        /*if(!empty(request('image'))){
+            $imagePath = request('image')->file_exists('uploads', 'public');
+            $image = Image::make(public_path("/storage/{$imagePath}"));
+            $image->delete(array_merge([
+                'caption' => $data['caption'],
+                'image' => $imagePath
+            ]));   
+        }*/
+        
+        //return redirect()->route('profiles.show', ['user' => auth()->user()]);
     }
     
 }

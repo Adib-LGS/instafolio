@@ -11,9 +11,11 @@
     </div>
 </div>
 
-<form method="POST" action="{{ route('posts.destroy', '$post->image') }}" >
-                        @csrf
-                        @method('DELETE')
-                           <input type="submit" class="btn btn-sm btn-danger" value="Delete"></input>
-                    </form>
+@can('delete', $post->user->profile)
+<form method="POST" action="{{ route('posts.destroy', ['post' => $post->image]) }}" >
+    @csrf
+    @method('DELETE')
+    <button  class="btn btn-sm btn-danger" onclick="return confirm('Do you want to delete these post ?')">Delete</button>
+</form>
+@endcan
 @endsection
