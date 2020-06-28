@@ -9,7 +9,9 @@
                     <div class="col-8">
                         <div class="d-flex align-items-baseline">
                             <div class="h4 mr-3 pt-2">{{ $user->username }}</div>
+                            @can('follow', $user->profile)
                             <follow-button profile-id="{{ $user->profile->id }}" follows="{{ $follows }}"></follow-button>
+                            @endcan
                         </div>
                         <div class="d-flex mt-3">
                             <div class="mr-3"><strong>{{ $postCount }}</strong>@if($user->posts->count() > 1) posts @else post @endif</div>

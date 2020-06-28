@@ -9,6 +9,8 @@ use Intervention\Image\Facades\Image;
 
 class PostController extends Controller
 {
+    protected $fillable = ['caption', 'image', 'user_id'];
+    
     /**User Have to be Authentificated to Post Image */
     public function __construct()
     {
@@ -43,7 +45,7 @@ class PostController extends Controller
         $imagePath = request('image')->store('uploads', 'public');
         
         //Using Intervention Image library + Facades to resize Image
-        $image = Image::make(public_path("/storage/{$imagePath}"))->fit(800, 800);
+        $image = Image::make(public_path("/storage/{$imagePath}"))->fit(1000, 1000);
         $image->save();
         
         //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
@@ -62,42 +64,29 @@ class PostController extends Controller
     }
 
 
-    public function destroy(User $user, Post $post)
+    public function destroy(Post $post)
     {
-        $this->authorize('delete', $user->profile);
-
-       
+        
         $data = request()->hasFile([
             'caption' => ['string'],
             'image' => ['image']
         ]);
         
-        $post = Post::findOrFail($data);
-        
+        $post = Post::findOrFail($post->id)->first();
+    
 
-        if(!empty(request('image')) ) {
+        if(!empty($post)) {
             $imagePath = request('image')->file_exists('uploads', 'public');
-            $image = unlink(public_path("/storage/{$imagePath}"));
+            $image = Image::make(unlink(public_path("/storage/{$imagePath}")));
             $image->delete();
-
-            $user->profile->$post->delete([
-                'caption' => $data['caption'],
-                'image' => $imagePath
-            ]);
         }
 
+        auth()->user()->posts()->delete([
+            'caption' => $data['caption'],
+            'image' => $imagePath
+        ]);
         
-        
-        /*if(!empty(request('image'))){
-            $imagePath = request('image')->file_exists('uploads', 'public');
-            $image = Image::make(public_path("/storage/{$imagePath}"));
-            $image->delete(array_merge([
-                'caption' => $data['caption'],
-                'image' => $imagePath
-            ]));   
-        }*/
-        
-        //return redirect()->route('profiles.show', ['user' => auth()->user()]);
+        return redirect()->route('profiles.show', ['user' => auth()->user()]);
     }
     
 }

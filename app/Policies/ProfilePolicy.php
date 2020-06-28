@@ -92,4 +92,15 @@ class ProfilePolicy
     {
         //
     }
+
+    /**
+     * Determine whether the user can create profiles.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function follow(User $user, Profile $profile)
+    {
+        return $user->username != $profile->user->username;
+    }
 }
