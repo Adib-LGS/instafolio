@@ -67,13 +67,17 @@ class ProfileController extends Controller
            'q' => 'required'
         ]);
 
-       $q = request()->input('q');
+        $q = request()->input('q');
 
-       $user = User::where('username', 'like', "%$q%")->get('username');
-
-       dd($user);
-
-       //return redirect()->route('profiles.show', ['user' => $user]);
-        
+        if(!empty($q)){
+            $user = User::where('username', 'like', "%$q%")->first('username');
+            if($user){
+                //dd($user);
+                return redirect()->route('profiles.show', ['user' => $user]);
+            }else{
+                return redirect()->back();
+            }
+        }
+       
     }
 }
