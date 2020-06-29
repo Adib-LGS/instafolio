@@ -43,6 +43,7 @@
 
             .content {
                 text-align: center;
+                margin-bottom: 100px;
             }
 
             .title {
@@ -59,6 +60,9 @@
                 text-transform: uppercase;
             }
 
+            .links {
+                margin-top: 50px;
+            }
             .m-b-md {
                 margin-bottom: 30px;
             }

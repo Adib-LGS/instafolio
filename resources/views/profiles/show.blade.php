@@ -8,20 +8,20 @@
                     </div>
                     <div class="col-8">
                         <div class="d-flex align-items-baseline">
-                            <div class="h4 mr-3 pt-2">{{ $user->username }}</div>
+                            <div class="h4 ml-3 mr-3 pt-2">{{ $user->username }}</div>
                             @can('follow', $user->profile)
                             <follow-button profile-id="{{ $user->profile->id }}" follows="{{ $follows }}"></follow-button>
                             @endcan
                         </div>
-                        <div class="d-flex mt-3">
+                        <div class="d-flex mt-3 ml-3">
                             <div class="mr-3"><strong>{{ $postCount }}</strong>@if($user->posts->count() > 1) posts @else post @endif</div>
                             <div class="mr-3"><strong>{{ $followersCount }}</strong> followers</div>
                             <div class="mr-3"><strong>{{ $followingCount }}</strong> following</div>
                         </div>
                             @can('update', $user->profile)
-                            <a href="{{ route('profiles.edit', ['user' => $user->username]) }}" class="btn btn-info btn-sm mt-3">Edit Profile</a>
+                            <a href="{{ route('profiles.edit', ['user' => $user->username]) }}" class="btn btn-info btn-sm mt-3 ml-3">Edit Profile</a>
                             @endcan
-                        <div class="mt-3">
+                        <div class="ml-3 mt-3">
                             <div class="font-weight-bold">{{ $user->profile->title }}</div>
                             <div>{{ $user->profile->description }}</div>
                             <a href="{{ $user->profile->url }}">My GitHub Profile</a>
