@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
 {
@@ -45,7 +45,7 @@ class PostController extends Controller
         $imagePath = request('image')->store('uploads', 'public');
         
         //Using Intervention Image library + Facades to resize Image
-        $image = Image::make(public_path("/storage/{$imagePath}"))->fit(1000, 1000);
+        $image = Image::make(public_path("/storage/{$imagePath}"))->fit(800, 800);
         $image->save();
         
         //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
@@ -64,27 +64,17 @@ class PostController extends Controller
     }
 
 
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        
-        $data = request()->hasFile([
-            'caption' => ['string'],
-            'image' => ['image']
-        ]);
-        
-        $post = Post::findOrFail($post->id)->first();
-    
-
-        if(!empty($post)) {
-            $imagePath = request('image')->file_exists('uploads', 'public');
-            $image = Image::make(unlink(public_path("/storage/{$imagePath}")));
-            $image->delete();
+        $post = Post::find($id);
+            //dd($post);
+        $imagePath = $post->image;
+            //dd($imagePath);
+        if(!empty($imagePath) && file_exists("/storage/{$imagePath}")) {
+            unlink(public_path("/storage/{$imagePath}"));
         }
 
-        auth()->user()->posts()->delete([
-            'caption' => $data['caption'],
-            'image' => $imagePath
-        ]);
+        $post->delete();
         
         return redirect()->route('profiles.show', ['user' => auth()->user()]);
     }

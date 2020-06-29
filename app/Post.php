@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $guarded = [];
+    protected $fillable = ['caption', 'image', 'user_id'];
+
 
     
     /**User Can have Many Post */
