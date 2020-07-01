@@ -18,7 +18,7 @@ class PostController extends Controller
     }
 
 
-    public static function index()
+    public function index()
     {
         //Pluck = get user_id profile followed
         $users = auth()->user()->following->pluck('user_id');

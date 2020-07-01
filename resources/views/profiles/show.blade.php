@@ -24,7 +24,7 @@
                         <div class="ml-3 mt-3">
                             <div class="font-weight-bold">{{ $user->profile->title }}</div>
                             <div>{{ $user->profile->description }}</div>
-                            <a href="{{ $user->profile->url }}">My GitHub Profile</a>
+                            <a href="{{ $user->profile->url }}">{{ $user->profile->url }}</a>
                         </div>
                     </div>
                 </div>

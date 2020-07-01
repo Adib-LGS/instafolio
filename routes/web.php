@@ -19,16 +19,16 @@ Route::view('/', 'welcome');
 /**Auhtentification systeme middleware*/
 Auth::routes();
 
-/**DashBoard */
+/**Home*/
 Route::get('/home', 'HomeController@index')->name('home');
 
-/**Profile Route */
+/**Profiles Route */
 Route::get('/profiles/{user}', 'ProfileController@show')->name('profiles.show');
 Route::get('/search', 'ProfileController@search')->name('profiles.search');
 Route::get('/profiles/{user}/edit', 'ProfileController@edit')->name('profiles.edit');
 Route::patch('/profiles/{user}', 'ProfileController@update')->name('profiles.update');
 
-/**Post Route */
+/**Posts Route */
 Route::get('/posts', 'PostController@index')->name('posts.index');
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
 Route::post('/posts', 'PostController@store')->name('posts.store');

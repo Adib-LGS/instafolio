@@ -15,7 +15,6 @@ class ProfileController extends Controller
     /**Type int User via User.php  getRouteKeyName() */
     public function show(User $user)
     {
-        
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->profile->id) : false;
         
         $postCount = $user->posts->count();
