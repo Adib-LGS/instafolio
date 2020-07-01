@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <title>Instafolio</title>
 
@@ -12,9 +12,22 @@
         <!-- Styles -->
         
         <style>
+            @media (max-width: 767px) {
+            .intro {
+                font-size: 13px;
+                text-align: left;
+                display: flex; 
+                text-align: left;
+                flex-wrap: wrap;
+                word-wrap: break-word;
+                max-width: 20rem;
+                padding-left: 25px;
+                margin-bottom: 1rem;
+            }
+            }
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                background-color: #fafafa;
+                color: #262626;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -47,11 +60,22 @@
             }
 
             .title {
+                margin-top: 10rem;
                 font-size: 84px;
             }
 
+            .intro {
+                text-align: left;
+                display: flex; 
+                text-align: left;
+                flex-wrap: wrap;
+                word-wrap: break-word;
+                max-width: 50rem;
+                padding-left: 25px;
+                margin-bottom: 1rem;
+            }
             .links > a {
-                color: #636b6f;
+                color: #0095f6;
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;
@@ -66,6 +90,7 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
         </style>
     </head>
     <body>
@@ -73,7 +98,8 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ route('posts.index') }}">Actuality</a>
+                        <a href="{{ route('posts.index') }}">All Posts</a>
+                        <a href="{{ route('profiles.show', ['user' => Auth::user()->name]) }}" class="dropdown-item">My Profile</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -88,15 +114,31 @@
                 <div class="title m-b-md">
                     Instafolio
                 </div>
-
-                @include('partials.search')
+                @guest
+                <div class="intro">
+                    Welcome to my portfolio,
+                    My name is Adib Legastelois, 
+                    I'm a web developer, back-end oriented. 
+                    The goal is to highlight my various projects
+                    in the form of the well-known social network "Instagram"
+                    The application is functional, you can subscribe
+                    follow me && post photos if you want to 
+                    You can also find me in my profile by typing "Adib" in the search bar.
+                    This application was developed with "Laravel 6" & "Vue.js"
+                    as well as the "Intervention Image library". 
+                    There is also a "GitHub" link to see the different code.
+                </div>
+                @endguest
+                <div class="form-group w-100" >
+                    @include('partials.search')
+                </div>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://github.com/Adib-LGS">GitHub</a>
                 </div>
-            </div>
+            </p>
         </div>
     </body>
 </html>

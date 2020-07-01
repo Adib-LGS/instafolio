@@ -1,4 +1,3 @@
-<div class="form-group w-100">
     <form action="{{ route('profiles.search') }}" class="d-flex mr-3">
         @csrf
             <input type="text" name="q" class="form-control" value="{{ request()->q ?? '' }}" placeholder="Find User">
@@ -6,4 +5,3 @@
                 <i class="fa fa-search" aria-hidden="true"></i>
         </button>
     </form>
-</div>
