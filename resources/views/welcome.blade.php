@@ -1,144 +1,136 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <title>Instafolio</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <!-- Styles -->
-        
-        <style>
-            @media (max-width: 767px) {
-            .intro {
-                font-size: 13px;
-                text-align: left;
-                display: flex; 
-                text-align: left;
-                flex-wrap: wrap;
-                word-wrap: break-word;
-                max-width: 20rem;
-                padding-left: 25px;
-                margin-bottom: 1rem;
-            }
-            }
-            html, body {
-                background-color: #fafafa;
-                color: #262626;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-                margin-bottom: 100px;
-            }
-
-            .title {
-                margin-top: 10rem;
-                font-size: 84px;
-            }
-
-            .intro {
-                text-align: left;
-                display: flex; 
-                text-align: left;
-                flex-wrap: wrap;
-                word-wrap: break-word;
-                max-width: 50rem;
-                padding-left: 25px;
-                margin-bottom: 1rem;
-            }
-            .links > a {
-                color: #0095f6;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .links {
-                margin-top: 50px;
-            }
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-
-        </style>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>InstaFolio</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
     </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        @if (Route::has('login'))
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
                     @auth
-                        <a href="{{ route('posts.index') }}">All Posts</a>
-                        <a href="{{ route('profiles.show', ['user' => Auth::user()->name]) }}" class="dropdown-item">My Profile</a>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ route('posts.index') }}">All Posts</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ route('profiles.show', ['user' => Auth::user()->name]) }}">My Profile</a></li>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ route('login') }}">Login</a></li>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ route('register') }}">Register</a></li>
                         @endif
                     @endauth
+                    </ul>
                 </div>
+            </div>
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Instafolio
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container d-flex h-100 align-items-center">
+                <div class="mx-auto text-center">
+                    <h1 class="mx-auto my-0 text-uppercase">Instafolio</h1>
+                    <strong><h2 class="text-white mx-auto mt-2">Welcome to my portfolio</h2></strong>
+                    @guest
+                        <h2 class="text-white mx-auto mt-2">My name is Adib Legastelois<hr> 
+                            I'm a web developer, back-end oriented.</h2>
+                        <p class="text-white text-left">
+                            The goal is to present my various projects
+                            in the form of the well-known social network "Instagram".
+                            <br>
+                            The application is functional, you can subscribe
+                            follow && post photos if you want to.
+                            <br>
+                            You can also find me in my profile by typing "Adib" in the search bar bellow.
+                            <br>
+                            This application was developed with "Laravel 6" & "Vue.js"
+                            as well as the "Intervention Image library".<br> 
+                            There is also a "GitHub" link to see the different code.
+                        </p>
+                    @endguest
                 </div>
-                @guest
-                <div class="intro">
-                    Welcome to my portfolio,
-                    My name is Adib Legastelois, 
-                    I'm a web developer, back-end oriented. 
-                    The goal is to highlight my various projects
-                    in the form of the well-known social network "Instagram"
-                    The application is functional, you can subscribe
-                    follow me && post photos if you want to 
-                    You can also find me in my profile by typing "Adib" in the search bar.
-                    This application was developed with "Laravel 6" & "Vue.js"
-                    as well as the "Intervention Image library". 
-                    There is also a "GitHub" link to see the different code.
+            </div>
+        </header>
+        <!-- About-->
+        <section class="about-section text-center" id="about">
+            <div class="container">
+                
+            </div>
+        </section>
+        <!-- Signup-->
+        <section class="signup-section" id="signup">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-lg-8 mx-auto text-center">
+                            @include('partials.search')
+                    </div>
                 </div>
-                @endguest
-                <div class="form-group w-100" >
-                    @include('partials.search')
+            </div>
+        </section>
+        <!-- Contact-->
+        <section class="contact-section bg-black">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">Address</h4>
+                                <hr class="my-4" />
+                                <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-envelope text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">Email</h4>
+                                <hr class="my-4" />
+                                <div class="small text-black-50"><a href="#!">adib.legastelois@icloud.com</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                                <h4 class="text-uppercase m-0">Phone</h4>
+                                <hr class="my-4" />
+                                <div class="small text-black-50">+1 (555) 902-8832</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://github.com/Adib-LGS">GitHub</a>
+                <div class="social d-flex justify-content-center">
+                    <a class="mx-2" href="https://github.com/Adib-LGS"><i class="fab fa-github"></i></a>
                 </div>
-            </p>
-        </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright © Your Website 2020</div></footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
     </body>
 </html>
