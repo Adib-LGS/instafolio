@@ -48,7 +48,7 @@
                     <h1 class="mx-auto my-0 text-uppercase">Instafolio</h1>
                     <h2 class="text-white-50 mx-auto mt-5">Welcome to my portfolio</h2>
                     <p class="text-white text-center">My name is Adib Legastelois<br> 
-                            I'm a web developer, back-end oriented.</p>
+                            I'm a web developer, back-end oriented(Laravel 6 && Vue.js).</p>
                 </div>
             </div>
         </header>
@@ -62,8 +62,6 @@
                             This application is functional, you can subscribe
                             follow && add posts. <br>
                             You can also find my profile by typing "Adib" in the search bar bellow. <br>
-                            This application was developed with "Laravel 6" & "Vue.js"
-                            as well as the "Intervention Image library". 
                             There is also a "GitHub" link to see my work.
                         </p>
                     @endguest

@@ -4,7 +4,7 @@
 <div class="container">
     @foreach($posts as $post)
         <div class="row mt-3 mb-3">
-            <div class="col-12 offset 3">
+            <div class="col-10 offset-1">
                 <div>
                 <strong>{{ $post->user->username }}</strong>
                 </div>
