@@ -17,11 +17,19 @@ class ProfileController extends Controller
     {
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->profile->id) : false;
         
-        $postCount = $user->posts->count();
-        $followersCount = $user->profile->followers->count();
-        $followingCount = $user->following->count();
+        $postsCount = Cache::remember('posts.count' . $user->id, now()->addSeconds(30), function () use ($user) {
+           return $user->posts->count();
+        });
 
-        return view('profiles.show', compact('user', 'follows', 'postCount', 'followersCount', 'followingCount'));
+        $followersCount = Cache::remember('followers.count' . $user->id, now()->addSeconds(30), function () use ($user) {
+           return $user->profile->followers->count();
+        });
+
+        $followingCount = Cache::remember('following.count' . $user->id, now()->addSeconds(30), function () use ($user) {
+           return $user->following->count();
+        });
+
+        return view('profiles.show', compact('user', 'follows', 'postsCount', 'followersCount', 'followingCount'));
     }
 
     public function edit(User $user)

@@ -14,7 +14,7 @@
                             @endcan
                         </div>
                         <div class="d-flex mt-3 ml-3">
-                            <div class="mr-3"><strong>{{ $postCount }}</strong>@if($user->posts->count() > 1) posts @else post @endif</div>
+                            <div class="mr-3"><strong>{{ $postsCount }}</strong>@if($user->posts->count() > 1) posts @else post @endif</div>
                             <div class="mr-3"><strong>{{ $followersCount }}</strong> followers</div>
                             <div class="mr-3"><strong>{{ $followingCount }}</strong> following</div>
                         </div>

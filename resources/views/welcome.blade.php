@@ -46,31 +46,29 @@
             <div class="container d-flex h-100 align-items-center">
                 <div class="mx-auto text-center">
                     <h1 class="mx-auto my-0 text-uppercase">Instafolio</h1>
-                    <strong><h2 class="text-white mx-auto mt-2">Welcome to my portfolio</h2></strong>
-                    @guest
-                        <h2 class="text-white mx-auto mt-2">My name is Adib Legastelois<hr> 
-                            I'm a web developer, back-end oriented.</h2>
-                        <p class="text-white text-left">
-                            The goal is to present my various projects
-                            in the form of the well-known social network "Instagram".
-                            <br>
-                            The application is functional, you can subscribe
-                            follow && post photos if you want to.
-                            <br>
-                            You can also find me in my profile by typing "Adib" in the search bar bellow.
-                            <br>
-                            This application was developed with "Laravel 6" & "Vue.js"
-                            as well as the "Intervention Image library".<br> 
-                            There is also a "GitHub" link to see the different code.
-                        </p>
-                    @endguest
+                    <h2 class="text-white-50 mx-auto mt-5">Welcome to my portfolio</h2>
+                    <p class="text-white text-center">My name is Adib Legastelois<br> 
+                            I'm a web developer, back-end oriented.</p>
                 </div>
             </div>
         </header>
         <!-- About-->
         <section class="about-section text-center" id="about">
             <div class="container">
-                
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                    @guest
+                        <p class="text-white">
+                            This application is functional, you can subscribe
+                            follow && add posts. <br>
+                            You can also find my profile by typing "Adib" in the search bar bellow. <br>
+                            This application was developed with "Laravel 6" & "Vue.js"
+                            as well as the "Intervention Image library". 
+                            There is also a "GitHub" link to see my work.
+                        </p>
+                    @endguest
+                    </div>
+                </div>
             </div>
         </section>
         <!-- Signup-->
@@ -124,7 +122,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright © Your Website 2020</div></footer>
+        <footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright © Adib Patrice Legastelois 2020</div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
