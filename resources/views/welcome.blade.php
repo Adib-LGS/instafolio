@@ -20,7 +20,8 @@
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         @if (Route::has('login'))
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand js-scroll-trigger" href="{{ url('/') }} #page-top">
+                <img src="{{ asset('svg/pyramid(1).svg') }}" width="55px" class="pr-3"></a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>

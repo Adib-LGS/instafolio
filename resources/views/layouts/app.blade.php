@@ -22,7 +22,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('svg/social-network.svg') }}" width="35px" class="pr-3" style="border-right: solid 1px #333;">
+                <img src="{{ asset('svg/pyramid.svg') }}" width="55px" class="pr-3" style="border-right: solid 1px #333;">
                     <span class="pl-3">InstaFolio</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

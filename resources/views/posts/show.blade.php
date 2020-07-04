@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="col-12">
-    <div class="h2 ml-3 mr-3 mb-3 pt-2 ">{{ $post->user->username }}</div>
+    <div class="h2 ml-3 mr-3 mb-3 pt-2">{{ $post->user->username }}</div>
         <img src="{{ asset('storage') . '/' . $post->image }}" class="w-100">
     </div>
     <div class="col-4">
@@ -14,7 +14,7 @@
 <form method="POST" action="{{ route('posts.destroy', ['post' => $post->id]) }}" >
     @csrf
     @method('DELETE')
-    <button type="submit"  class="btn btn-sm btn-danger" onclick="return confirm('Do you want to delete these post ?')">Delete</button>
+    <button type="submit"  class="btn btn-sm btn-danger ml-3" onclick="return confirm('Do you want to delete these post ?')">Delete</button>
 </form>
 @endcan
 </div>

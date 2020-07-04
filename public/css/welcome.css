@@ -67,7 +67,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
+  background-color: rgb(29, 6, 15);
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -160,12 +160,12 @@ sup {
 }
 
 a {
-  color: #64a19d;
+  color: #b49f91;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #467370;
+  color: #b49f91;
   text-decoration: underline;
 }
 
@@ -2491,12 +2491,12 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #64a19d;
-  border-color: #64a19d;
+  background-color: #b49f91;
+  border-color: #b49f91;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #548b87;
+  background-color: #7a0151;
   border-color: #4f837f;
 }
 .btn-primary:focus, .btn-primary.focus {
@@ -2521,7 +2521,7 @@ fieldset:disabled a.btn {
 
 .btn-secondary {
   color: #fff;
-  background-color: #6c757d;
+  background-color: #b49f91;
   border-color: #6c757d;
 }
 .btn-secondary:hover {
