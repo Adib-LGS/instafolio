@@ -49,7 +49,7 @@
                     <h1 class="mx-auto my-0 text-uppercase">Instafolio</h1>
                     <h2 class="text-white-50 mx-auto mt-5">Welcome to my portfolio</h2>
                     <p class="text-white text-center">My name is Adib Legastelois<br> 
-                            I'm a web developer, back-end oriented(Laravel 6 && Vue.js).</p>
+                            I'm a web developer Jr, back-end oriented(Laravel 6).</p>
                 </div>
             </div>
         </header>
@@ -90,7 +90,7 @@
                                 <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Address</h4>
                                 <hr class="my-4" />
-                                <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+                                <div class="small text-black-50">7777 HireMe Street, Montreal CA</div>
                             </div>
                         </div>
                     </div>
