@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
 {
@@ -45,7 +45,7 @@ class PostController extends Controller
         $imagePath = request('image')->store('uploads', 'public');
         
         //Using Intervention Image library + Facades to resize Image
-        $image = Image::make(public_path("storage/{$imagePath}"))->fit(800, 800);
+        $image = Image::make(public_path("/storage/{$imagePath}"))->fit(800, 800);
         $image->save();
         
         //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
