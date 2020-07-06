@@ -44,7 +44,7 @@ class PostController extends Controller
         
         if($imagePath){
         //Using Intervention Image library + Facades to resize Image
-        $image = Image::make(public_path("/storage/{$imagePath}"))->fit(800, 800);
+        $image = Image::make(public_path("/storage/{$imagePath}"))->fit(1000, 1000);
         $image->save();
 
         }else{
