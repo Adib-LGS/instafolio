@@ -30,27 +30,19 @@ return [
     | Available Drivers: "single", "daily", "slack", "syslog",
     |                    "errorlog", "monolog",
     |                    "custom", "stack"
-    | Avant modif : 'channels' => [
-    |   'stack' => [
-    |        'driver' => 'stack',
-    |        'channels' => ['daily'],
-    |        'ignore_exceptions' => false,
-    |    ],
-    |    'single' => [
-    |        'driver' => 'single',
-    |        'path' => storage_path('logs/laravel.log'),
-    |        'level' => 'debug',
-    |    ],
     |
     */
 
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['daily'],
+            'ignore_exceptions' => false,
         ],
+
         'single' => [
-            'driver' => 'errorlog',
+            'driver' => 'single',
+            'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
         ],
 
