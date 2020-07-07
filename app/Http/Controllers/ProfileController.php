@@ -54,7 +54,7 @@ class ProfileController extends Controller
         
         if(request('image')){
             $imagePath = request('image')->store('avatars', 'public');
-            $image = Image::make(public_path("/storage/{$imagePath}"))->fit(800,800);
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(800,800);
             $image->save();
 
             $user->profile->update(array_merge(
