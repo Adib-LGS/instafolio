@@ -24,7 +24,7 @@ class Profile extends Model
     {
         $imagePath = $this->image ?? 'avatars/default.png';
 
-        return "/storage/" . $imagePath;
+        return '../storage/' . $imagePath;
     }
 
     /**Followers Relationship */
