@@ -6,7 +6,7 @@ use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Image;
+use Intervention\Image\Facades\Image as Image;
 
 
 class ProfileController extends Controller
@@ -56,12 +56,12 @@ class ProfileController extends Controller
         if ($request->hasFile('image') ) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->save(public_path('storage/avatars/'.$filename));
+            Image::make($image)->save(public_path("storage/avatars/".$filename))->fit(800,800);
             $user->profile->image = $filename;
             $user->profile->save();
         }
 
-        return redirect()->route('profiles.show', ['user' => $user])->with('status', 'Succes');
+        return redirect()->route('profiles.show', ['user' => $user])->with('status', 'Your profile has been updated successfully');
     }
 
     public function search(User $user)
