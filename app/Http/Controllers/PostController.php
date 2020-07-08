@@ -33,7 +33,6 @@ class PostController extends Controller
 
     public function store()
     {
-        //Warning $data = Temporary Image Path
         $data = request()->validate([
             'caption' => ['required', 'string'],
             'image' => ['required', 'image']
@@ -44,14 +43,13 @@ class PostController extends Controller
         
         if($imagePath){
         //Using Intervention Image library + Facades to resize Image
-        $image = Image::make(public_path("storage/{$imagePath}"))->fit(900, 900);
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(800, 800);
         $image->save();
 
         }else{
             dd('Error Path Public/uploads');
         }
 
-        
         //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
         auth()->user()->posts()->create([
             'caption' => $data['caption'],

@@ -2,9 +2,14 @@
 
 @section('content')
             <div class="container">
+                @if(session('status'))
+                <div class="alert alert-success">
+                <strong>{{ session('status') }}</strong> 
+                </div>
+@endif
                 <div class="row mt-4">
                     <div class="col-4">
-                        <img src="{{ $user->profile->getImage() }}" class="rounded-circle" width="130px" height="130px">
+                        <img src="/storage/avatars/{{ $user->profile->image }}" class="rounded-circle" width="150px" height="150px">
                     </div>
                     <div class="col-8">
                         <div class="d-flex align-items-baseline">

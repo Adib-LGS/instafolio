@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/*"
+  to = "https://relaxed-mccarthy-4e12ce.netlify.app/:splat"
+  status = 200

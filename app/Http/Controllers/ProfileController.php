@@ -6,7 +6,7 @@ use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Intervention\Image\Facades\Image;
+use Image;
 
 
 class ProfileController extends Controller
@@ -40,7 +40,7 @@ class ProfileController extends Controller
         return view('profiles.edit', compact('user'));
     }
 
-    public function update(User $user)
+    public function update(User $user, Request $request)
     {
         $this->authorize('update', $user->profile);
 
@@ -51,21 +51,17 @@ class ProfileController extends Controller
             'image' => 'sometimes|image|max:3000|mimes:jpeg,bmp,png'
         ]);
 
-        
-        if(request('image')){
-            $imagePath = request('image')->store('avatars', 'public');
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(800,800);
-            $image->save();
+        $user->profile->update($request->all());
 
-            $user->profile->update(array_merge(
-                $data,
-                ['image' => $imagePath]
-            ));
-        }else{
-            $user->profile->update($data);
+        if ($request->hasFile('image') ) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save(public_path('storage/avatars/'.$filename));
+            $user->profile->image = $filename;
+            $user->profile->save();
         }
 
-        return redirect()->route('profiles.show', ['user' => $user]);
+        return redirect()->route('profiles.show', ['user' => $user])->with('status', 'Succes');
     }
 
     public function search(User $user)
