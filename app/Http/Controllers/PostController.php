@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Intervention\Image\Facades\Image;
+use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image as Image;
 
 class PostController extends Controller
 {
@@ -31,25 +32,24 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        //Warning $data = Temporary Image Path
         $data = request()->validate([
             'caption' => ['required', 'string'],
             'image' => ['required', 'image']
         ]);
         
         //True Image Path storage/public/uploads
-        $imagePath = request('image')->store('uploads', 'public');
-        
-        if($imagePath){
-        //Using Intervention Image library + Facades to resize Image
-        $image = Image::make(public_path("storage/{$imagePath}"))->fit(800, 800);
-        $image->save();
+        $imagePath = $request->file('image')->store('uploads', 'public');
 
+        if($request->hasFile('image')){
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(900, 900);
+            $image->save();
         }else{
-            dd('Error Path Public/uploads');
+            dd('Error Upload Image');
         }
-
+        
         //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
@@ -73,7 +73,7 @@ class PostController extends Controller
         $imagePath = $post->image;
             //dd($imagePath);
         if(!empty($imagePath) && file_exists("/storage/{$imagePath}")) {
-            unlink(public_path("/storage/{$imagePath}"));
+            unlink(public_path("/uploads/{$imagePath}"));
         }
 
         $post->delete();
