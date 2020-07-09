@@ -56,7 +56,7 @@ class ProfileController extends Controller
         if ($request->hasFile('image') ) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(800,800)->save(public_path("storage/avatars/".$filename));
+            Image::make($image)->fit(800,800)->save(public_path("./storage/avatars/".$filename));
             $user->profile->image = $filename;
             $user->profile->save();
         }
