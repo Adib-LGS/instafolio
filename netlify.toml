@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "/*"
-  to = "https://instafolio-adiblgs.netlify.app/:splat"
-  status = 200
