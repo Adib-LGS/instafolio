@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image as Image;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -40,21 +42,18 @@ class PostController extends Controller
             'image' => ['required', 'image']
         ]);
         
-        //True Image Path storage/public/uploads
-        $imagePath = $request->file('image')->store('uploads', 'public');
-
-        if($request->hasFile('image')){
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(900, 900);
-            $image->save();
-        }else{
-            dd('Error Upload Image');
-        }
-        
         //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
-        auth()->user()->posts()->create([
-            'caption' => $data['caption'],
-            'image' => $imagePath
-        ]);
+        $post = Post::create($request->all());
+        $post->user_id = Auth::user()->id;
+        $post->save();
+    
+        if ($request->hasFile('image') ) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save(public_path("storage/posts/".$filename))->fit(900,900);
+            $post->image = $filename;
+            $post->save();
+        }
 
         return redirect()->route('profiles.show', ['user' => auth()->user()]);
     }
@@ -72,8 +71,9 @@ class PostController extends Controller
             //dd($post);
         $imagePath = $post->image;
             //dd($imagePath);
-        if(!empty($imagePath) && file_exists("/storage/{$imagePath}")) {
-            unlink(public_path("/uploads/{$imagePath}"));
+
+        if (File::exists(public_path('/storage/posts/' . $imagePath))) {
+            File::delete(public_path('/storage/posts/' . $imagePath));
         }
 
         $post->delete();
