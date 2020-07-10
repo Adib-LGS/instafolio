@@ -50,7 +50,7 @@ class PostController extends Controller
         if ($request->hasFile('image') ) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(900,900)->save(storage_path("app/public/posts/".$filename));
+            Image::make($image)->fit(900,900)->save("app/public/posts/".$filename);
             dd($post, $filename, $image);
             $post->image = $filename;
             $post->save();
