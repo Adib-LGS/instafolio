@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image as Image;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -51,7 +50,7 @@ class PostController extends Controller
         if ($request->hasFile('image') ) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(900,900)->Storage::put("storage/posts/".$filename);
+            Image::make($image)->fit(900,900)->save("storage/posts/".$filename);
             $post->image = $filename;
             $post->save();
         }
