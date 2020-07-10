@@ -50,7 +50,8 @@ class PostController extends Controller
         if ($request->hasFile('image') ) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(900,900)->save(public_path("storage/posts/".$filename));
+            Image::make($image)->fit(900,900)->save(storage_path("app/public/posts/".$filename));
+            dd($post, $filename, $image);
             $post->image = $filename;
             $post->save();
         }
@@ -72,8 +73,8 @@ class PostController extends Controller
         $imagePath = $post->image;
             //dd($imagePath);
 
-        if (File::exists(public_path('/storage/posts/' . $imagePath))) {
-            File::delete(public_path('/storage/posts/' . $imagePath));
+        if (File::exists(storage_path('app/public/posts/' . $imagePath))) {
+            File::delete(storage_path('app/public/posts/' . $imagePath));
         }
 
         $post->delete();
