@@ -9,12 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "ext-gd": "*",
+        "aws/aws-sdk-php": "~3.0",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "laravel/ui": "1.0",
-        "ext-gd": "*"
+        "league/flysystem-aws-s3-v3": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
