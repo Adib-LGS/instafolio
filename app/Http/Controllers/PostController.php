@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image as Image;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -37,7 +38,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //Warning $data = Temporary Image Path
-        $data = request()->validate([
+        $data = $this->validate($request, [
             'caption' => ['required', 'string'],
             'image' => ['required', 'image']
         ]);
@@ -50,10 +51,16 @@ class PostController extends Controller
         if ($request->hasFile('image') ) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(900,900)->save("app/public/posts/".$filename);
-            dd($post, $filename, $image);
+            $filePath= 'instafolio-images' . $filename;
+            Image::make($image)->fit(800,800);
+            Storage::disk('s3')->put($filePath, file_get_contents($image));
+            Storage::disk('s3')->setVisibility($filePath, 'public');
             $post->image = $filename;
             $post->save();
+            
+            return Storage::disk('s3')->url($filePath);
+            //return dd($st);
+
         }
 
         return redirect()->route('profiles.show', ['user' => auth()->user()]);
