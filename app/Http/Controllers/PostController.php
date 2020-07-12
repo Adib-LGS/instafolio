@@ -44,11 +44,23 @@ class PostController extends Controller
         ]);
         
         //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
-        $post = Post::create($request->all());
-        $post->user_id = Auth::user()->id;
-        $post->save();
-    
         if ($request->hasFile('image') ) {
+            $path = $request->file('image')->store('posts', 's3');
+            //return $path;
+            Storage::disk('s3')->setVisibility($path, 'public');
+            $post = Post::create([
+                'filename' => basename($path),
+                'image' => Storage::disk('s3')->put('posts/', $path),
+                'caption' => $data['caption']
+            ]);
+            $post->user_id = Auth::user()->id;
+            $post->save();
+            
+            ob_end_clean();
+            
+            //return $post;
+        }
+        /*if ($request->hasFile('image') ) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $filePath= 'instafolio-images' . $filename;
@@ -61,7 +73,7 @@ class PostController extends Controller
             return Storage::disk('s3')->url($filePath);
             //return dd($st);
 
-        }
+        }*/
 
         return redirect()->route('profiles.show', ['user' => auth()->user()]);
     }
@@ -69,6 +81,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        
         return view('posts.show', compact('post'));
     }
 

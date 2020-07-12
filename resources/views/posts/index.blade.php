@@ -9,7 +9,7 @@
                 <strong>{{ $post->user->username }}</strong>
                 </div>
                 <a href="{{ route('posts.show', ['post' => $post->id]) }}">
-                    <img src="{{ asset('storage') . './posts/' . $post->image }}" class="w-100">
+                    <img src="{{ Storage::disk('s3')->url('posts/' . $post->filename) }}" class="w-100">
                 </a>
                     <div>
                         Posted by: <strong>{{ $post->user->username }}</strong> {{ $post->created_at->format('m-d-Y') }}

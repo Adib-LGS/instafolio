@@ -7,7 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image as Image;
-
+use Storage;
 
 class ProfileController extends Controller
 {
@@ -44,7 +44,7 @@ class ProfileController extends Controller
     {
         $this->authorize('update', $user->profile);
 
-        $data = request()->validate([
+        $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
             'url' => 'required|url',
