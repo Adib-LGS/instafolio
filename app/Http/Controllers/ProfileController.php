@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image as Image;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
+
 
 class ProfileController extends Controller
 {
