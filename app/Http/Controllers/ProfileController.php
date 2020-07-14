@@ -53,15 +53,15 @@ class ProfileController extends Controller
         ]);
 
         if($request->hasFile('image') ){
+            $image = Image::make($request->file('image'))->fit(800,800)->stream();
             $path = $request->file('image')->store('avatars', 's3');
-            Image::make($request->file('image'))->fit(800,800);
             Storage::disk('s3')->setVisibility($path, 'public');
             $user->profile->update([
                 'title' => $data['title'],
                 'description' => $data['description'],
                 'url' => $data['url'],
                 'filename' => basename($path),
-                'image' => Storage::disk('s3')->put('avatars/', $path),
+                'image' => Storage::disk('s3')->put('avatars/', $path, $image),
                 'user_id' => $user->profile->id
             ]);
             $user->profile->save();

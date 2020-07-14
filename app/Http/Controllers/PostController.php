@@ -56,14 +56,13 @@ class PostController extends Controller
             ]);
             $post->user_id = Auth::user()->id;
             $post->save();
-            
+        
             ob_end_clean();
-            //return $post;
         }
 
 
         /*If you're using Local Storage
-        
+
         //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
         $post = Post::create($request->all());
         $post->user_id = Auth::user()->id;
