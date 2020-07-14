@@ -61,7 +61,7 @@ class PostController extends Controller
         }
 
 
-        /*If you're using Local Storage
+        /*If you're using Local Storage dont't forget to remove (filename) of some tables post & profiles 
 
         //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
         $post = Post::create($request->all());
