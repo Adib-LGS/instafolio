@@ -70,20 +70,16 @@ class ProfileController extends Controller
             $user->profile->update(array_merge($data));
         }
 
-        /*$user->profile->update($request->all());
+        /*If you're using Local Storage
+        
+        $user->profile->update($request->all());
 
         if ($request->hasFile('image') ) {
-            $path = $request->file('image')->store('avatars', 's3');
-            //dd($path);
-            Storage::disk('s3')->setVisibility($path, 'public');
-            $user->profile->image = $path;
-            $user->profile->create([
-                'filename' => basename($path),
-                'image' => Storage::disk('s3')->put('avatars/', $path),
-                'user_id' => $user->profile->id,
-            ]);
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save(public_path("storage/avatars/".$filename))->fit(800,800);
+            $user->profile->image = $filename;
             $user->profile->save();
-            ob_end_clean();
         }*/
             
 

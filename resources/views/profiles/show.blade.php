@@ -10,9 +10,9 @@
                 <div class="row mt-4">
                     <div class="col-4">
                         @if($user->profile->image != null)
-                            <img src="{{  Storage::disk('s3')->url('avatars/' . $user->profile->filename) }}" class="rounded-circle" width="130px" height="130px">
+                            <img src="{{  Storage::disk('s3')->url('avatars/' . $user->profile->filename) }}" class="rounded-circle" width="150px" height="150px">
                         @else
-                            <img src="{{ $user->profile->getImage() }}" class="rounded-circle" width="130px" height="130px">
+                            <img src="{{ $user->profile->getImage() }}" class="rounded-circle" width="150px" height="150px">
                         @endif
                     </div>
                     <div class="col-8">

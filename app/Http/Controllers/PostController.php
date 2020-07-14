@@ -45,13 +45,13 @@ class PostController extends Controller
         
         //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
         if ($request->hasFile('image') ) {
-            Image::make($request->file('image'))->fit(800,800);
+            $image = Image::make($request->file('image'))->fit(800,800)->stream();
             $path = $request->file('image')->store('posts', 's3');
             //return $path;
             Storage::disk('s3')->setVisibility($path, 'public');
             $post = Post::create([
                 'filename' => basename($path),
-                'image' => Storage::disk('s3')->put('posts/', $path),
+                'image' => Storage::disk('s3')->put('posts/', $path, $image),
                 'caption' => $data['caption']
             ]);
             $post->user_id = Auth::user()->id;
@@ -62,21 +62,21 @@ class PostController extends Controller
         }
 
 
-        /*
+        /*If you're using Local Storage
+        
+        //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
+        $post = Post::create($request->all());
+        $post->user_id = Auth::user()->id;
+        $post->save();
+    
         if ($request->hasFile('image') ) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            $filePath= 'instafolio-images' . $filename;
-            Image::make($image)->fit(800,800);
-            Storage::disk('s3')->put($filePath, file_get_contents($image));
-            Storage::disk('s3')->setVisibility($filePath, 'public');
+            Image::make($image)->save(public_path("storage/posts/".$filename))->fit(900,900);
             $post->image = $filename;
             $post->save();
-            
-            return Storage::disk('s3')->url($filePath);
-            //return dd($st);
-
-        }*/
+        }
+        */
 
         return redirect()->route('profiles.show', ['user' => auth()->user()]);
     }

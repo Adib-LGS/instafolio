@@ -1193,6 +1193,7 @@ pre code {
     max-width: 25%;
   }
 
+
   .row-cols-md-5 > * {
     flex: 0 0 20%;
     max-width: 20%;
@@ -7187,6 +7188,19 @@ button.bg-dark:focus {
 
 .rounded-circle {
   border-radius: 50% !important;
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+@media (max-width: 768px) {
+  .rounded-circle {
+  border-radius: 50% !important;
+  width: 6rem;
+  height: 6rem;
+  
+  }
 }
 
 .rounded-pill {
