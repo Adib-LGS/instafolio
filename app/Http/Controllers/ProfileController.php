@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Profile;
 use App\User;
+use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image as Image;
-use Storage;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -15,6 +16,7 @@ class ProfileController extends Controller
     /**Type int User via User.php  getRouteKeyName() */
     public function show(User $user)
     {
+
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->profile->id) : false;
         
         $postCount = Cache::remember('posts.count' . $user->id, now()->addSeconds(30), function () use ($user) {
@@ -44,22 +46,47 @@ class ProfileController extends Controller
     {
         $this->authorize('update', $user->profile);
 
-        $this->validate($request, [
+        $data = $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
             'url' => 'required|url',
             'image' => 'sometimes|image|max:3000|mimes:jpeg,bmp,png'
         ]);
 
-        $user->profile->update($request->all());
+        if($request->hasFile('image') ){
+            $path = $request->file('image')->store('avatars', 's3');
+            Image::make($request->file('image'))->fit(800,800);
+            Storage::disk('s3')->setVisibility($path, 'public');
+            $user->profile->update([
+                'title' => $data['title'],
+                'description' => $data['description'],
+                'url' => $data['url'],
+                'filename' => basename($path),
+                'image' => Storage::disk('s3')->put('avatars/', $path),
+                'user_id' => $user->profile->id
+            ]);
+            $user->profile->save();
+            ob_end_clean();
+        }else{
+            $user->profile->update(array_merge($data));
+        }
+
+        /*$user->profile->update($request->all());
 
         if ($request->hasFile('image') ) {
-            $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->fit(800,800)->save(public_path("storage/avatars/".$filename));
-            $user->profile->image = $filename;
+            $path = $request->file('image')->store('avatars', 's3');
+            //dd($path);
+            Storage::disk('s3')->setVisibility($path, 'public');
+            $user->profile->image = $path;
+            $user->profile->create([
+                'filename' => basename($path),
+                'image' => Storage::disk('s3')->put('avatars/', $path),
+                'user_id' => $user->profile->id,
+            ]);
             $user->profile->save();
-        }
+            ob_end_clean();
+        }*/
+            
 
         return redirect()->route('profiles.show', ['user' => $user])->with('status', 'Your profile has been updated successfully');
     }
