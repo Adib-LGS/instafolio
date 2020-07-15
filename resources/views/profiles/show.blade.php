@@ -31,9 +31,9 @@
                             <a href="{{ route('profiles.edit', ['user' => $user->username]) }}" class="btn btn-info btn-sm mt-3 ml-3">Edit Profile</a>
                             @endcan
                         <div class="ml-3 mt-3">
-                            <div class="font-weight-bold">{{ $user->profile->title }}</div>
-                            <div>{{ $user->profile->description }}</div>
-                            <a href="{{ $user->profile->url }}">{{ $user->profile->url }}</a>
+                            <div class="font-weight-bold"><p>{{ $user->profile->title }}</p></div>
+                            <div class="text-desc"><p>{{ $user->profile->description }}</p></div>
+                            <a href="{{ $user->profile->url }}"><p>{{ $user->profile->url }}</p></a>
                         </div>
                     </div>
                 </div>
