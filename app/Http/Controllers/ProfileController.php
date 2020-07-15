@@ -86,16 +86,16 @@ class ProfileController extends Controller
         return redirect()->route('profiles.show', ['user' => $user])->with('status', 'Your profile has been updated successfully');
     }
 
-    public function search(User $user)
+    public function search(User $user, Request $request)
     {
-        request()->validate([
+        $request->validate([
            'q' => 'required'
         ]);
 
-        $q = request()->input('q');
+        $q = $request->input('q');
 
         if(!empty($q)){
-            $user = User::where('username', 'like', "%$q%")->first('username');
+            $user = User::where('username', 'like', '%' . $q .'%' )->first('username');
             if($user){
                 //dd($user);
                 return redirect()->route('profiles.show', ['user' => $user]);
