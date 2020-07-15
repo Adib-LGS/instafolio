@@ -19,7 +19,7 @@ class Profile extends Model
     }
 
     /**
-    * Defaut Image creation Profile User
+    * Defaut Image creation Profile User https public bucket
     */
     public function getImage()
     {
