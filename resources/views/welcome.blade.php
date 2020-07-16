@@ -26,7 +26,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                     @auth
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ route('posts.index') }}">All Posts</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ route('posts.index') }}">Friend's Posts</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ route('profiles.show', ['user' => Auth::user()->name]) }}">My Profile</a></li>
                     @else
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ route('login') }}">Login</a></li>
