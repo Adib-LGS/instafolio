@@ -9,7 +9,6 @@
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
          <!-- Core theme CSS (includes Bootstrap)-->
          <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
     </head>
