@@ -42,7 +42,7 @@
                     @foreach($user->posts as $post)
                     <div class="col-6 mb-3">
                         <a href="{{ route('posts.show', ['post' => $post->id]) }}">
-                        <img src="{{ asset('storage') . '/posts/' . $post->image }}" class="w-100">
+                        <img src="{{ Storage::disk('s3')->url('posts/' . $post->filename) }}" class="w-100">
                         </a>
                     </div>
                     @endforeach
