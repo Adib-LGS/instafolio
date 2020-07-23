@@ -19,18 +19,6 @@ class Profile extends Model
         return $this->belongsTo('App\User');
     }
 
-    /**
-    * Defaut Image creation Profile User https public bucket
-    */
-    public function getImage()
-    {   
-        $imagePath = $this->image ?? 'avatars/default.png';
-
-        return '/storage/' . $imagePath;
-        
-        
-    }
-
     /**Followers Relationship */
     public function followers()
     {
