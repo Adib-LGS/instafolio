@@ -10,7 +10,7 @@
                 <div class="row mt-4">
                     <div class="col-4">
                         @if($user->profile->image != null)
-                        <img src="/storage/avatars/{{ $user->profile->image }}" class="rounded-circle" width="150px" height="150px">
+                        <img src="{{  Storage::disk('s3')->url('avatars/' . $user->profile->filename) }}" class="rounded-circle" width="150px" height="150px">
                         @else
                             <img src="https://www.recia.fr/wp-content/uploads/2018/10/default-avatar-300x300.png" class="rounded-circle" width="150px" height="150px">
                         @endif
