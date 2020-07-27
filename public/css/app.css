@@ -7134,13 +7134,14 @@ button.bg-dark:focus {
   }
 }
 
-@media (max-width: 2160px) and (min-width:1024px) {
+@media (max-width: 2160px) and (min-width:800px) {
   .rounded-circle {
   border-radius: 50% !important;
   width: 10rem;
   height: 10rem;
   
   }
+}
 
 .rounded-pill {
   border-radius: 50rem !important;
@@ -10870,4 +10871,3 @@ a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-
