@@ -12,7 +12,7 @@
                         @method('PATCH')
                         <div class="form-group">
                             <label for="title" >Title</label>
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') ?? $user->profile->title }}"  autocomplete="title" autofocus>
+                                <input id="title"  class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') ?? $user->profile->title }}">
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -23,7 +23,7 @@
 
                         <div class="form-group">
                             <label for="description" >description</label>
-                            <textarea id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" autocomplete="description" autofocus>{{ old('description') ?? $user->profile->description }}</textarea>
+                            <textarea id="description"  class="form-control @error('description') is-invalid @enderror" name="description" >{{ old('description') ?? $user->profile->description }}</textarea>
 
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
 
                         <div class="form-group">
                             <label for="url" >URL</label>
-                                <input id="url" type="text" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ old('url') ?? $user->profile->url }}"  autocomplete="url" autofocus>
+                                <input id="url"  class="form-control @error('url') is-invalid @enderror" name="url" value="{{ old('url') ?? $user->profile->url }}" >
 
                                 @error('url')
                                     <span class="invalid-feedback" role="alert">
