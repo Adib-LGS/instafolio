@@ -7134,6 +7134,14 @@ button.bg-dark:focus {
   }
 }
 
+@media (min-width: 800px) {
+  .rounded-circle {
+  border-radius: 50% !important;
+  width: 10rem;
+  height: 10rem;
+  
+  }
+
 .rounded-pill {
   border-radius: 50rem !important;
 }
