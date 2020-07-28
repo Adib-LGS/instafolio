@@ -60,13 +60,19 @@
                             This application is functional, you can subscribe
                             follow && add posts. <br>
                             You can also find my profile by typing "Adib" in the search bar bellow. <br>
-                            There is also a "GitHub" link to see my work.
+                            There is also a "GitHub" link to see my work.<br>
+                            PS: To register, you can use an imaginary email.
                         </p>
                     @endguest
                     </div>
                 </div>
             </div>
         </section>
+            <div id="app2">
+                    <div class="container">
+                        <cookie-banner></cookie-banner>
+                    </div>
+                </div>
         <!-- Signup-->
         <section class="signup-section" id="signup">
             <div class="container">
@@ -115,11 +121,13 @@
                 <div class="social d-flex justify-content-center">
                     <a class="mx-2" href="https://github.com/Adib-LGS"><i class="fab fa-github"></i></a>
                 </div>
-            </div>
         </section>
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright © Adib Patrice Legastelois 2020</div></footer>
+        <footer class="footer bg-black small text-center text-white-50">
+            <div class="container">Copyright © Adib Patrice Legastelois 2020</div>
+        </footer>
         <!-- Bootstrap core JS-->
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
