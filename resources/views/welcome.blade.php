@@ -118,6 +118,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
                 <div class="social d-flex justify-content-center">
                     <a class="mx-2" href="https://github.com/Adib-LGS"><i class="fab fa-github"></i></a>
                 </div>
