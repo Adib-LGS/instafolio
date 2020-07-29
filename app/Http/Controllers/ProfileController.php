@@ -42,16 +42,17 @@ class ProfileController extends Controller
     }
 
     public function update(User $user, Request $request)
-    {
-        $this->authorize('update', $user->profile);
+    {   
 
-        $data = $this->validate($request, [
+        //Production Mode With AWS S3 Remote Server dont't forget to add "$table->string('filename');" in tables post & profiles
+
+        $data = request()->validate([
             'title' => 'required',
             'description' => 'required',
             'url' => 'required|url',
             'image' => 'sometimes|image|max:3000|mimes:jpeg,bmp,png'
         ]);
-
+        
         if($request->hasFile('image') ){
             $image = Image::make($request->file('image'))->fit(800,800)->stream();
             $path = $request->file('image')->store('avatars', 's3');
@@ -70,8 +71,16 @@ class ProfileController extends Controller
             $user->profile->update(array_merge($data));
         }
 
-        /*If you're using Local Storage dont't forget to remove (filename) of some tables post & profiles 
-        
+        //Local Dev
+        /*$this->authorize('update', $user->profile);
+
+        $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required',
+            'url' => 'required|url',
+            'image' => 'sometimes|image|max:3000|mimes:jpeg,bmp,png'
+        ]);
+
         $user->profile->update($request->all());
 
         if ($request->hasFile('image') ) {
@@ -80,8 +89,7 @@ class ProfileController extends Controller
             Image::make($image)->save(public_path("storage/avatars/".$filename))->fit(800,800);
             $user->profile->image = $filename;
             $user->profile->save();
-        }*/
-            
+        }*/    
 
         return redirect()->route('profiles.show', ['user' => $user])->with('status', 'Your profile has been updated successfully');
     }

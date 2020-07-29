@@ -36,14 +36,14 @@ class PostController extends Controller
     }
 
     public function store(Request $request)
-    {
-        //Warning $data = Temporary Image Path
-        $data = $this->validate($request, [
+    {   
+
+        //Production Mode With AWS S3 Remote Server dont't forget to add "$table->string('filename');" in tables post & profiles
+         $data = $this->validate($request, [
             'caption' => ['required', 'string'],
             'image' => ['required', 'image']
         ]);
         
-        //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
         if ($request->hasFile('image') ) {
             $image = Image::make($request->file('image'))->fit(800,800)->stream();
             $path = $request->file('image')->store('posts', 's3');
@@ -58,10 +58,14 @@ class PostController extends Controller
             $post->save();
         
             ob_end_clean();
-        }
+        } 
 
 
-        /*If you're using Local Storage dont't forget to remove (filename) of some tables post & profiles 
+        //Local Dev
+        /*$this->validate($request, [
+            'caption' => ['required', 'string'],
+            'image' => ['required', 'image']
+        ]);
 
         //Using Relationship between User && Post Models Get Authentificated User && assing his own Post
         $post = Post::create($request->all());
@@ -74,9 +78,8 @@ class PostController extends Controller
             Image::make($image)->save(public_path("storage/posts/".$filename))->fit(900,900);
             $post->image = $filename;
             $post->save();
-        }
-        */
-
+        }*/
+           
         return redirect()->route('profiles.show', ['user' => auth()->user()]);
     }
 
