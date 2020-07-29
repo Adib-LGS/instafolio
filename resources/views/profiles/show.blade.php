@@ -11,7 +11,7 @@
                     <div class="col-4">
                         @if($user->profile->image != null)
                         <!--Local environement img -->
-                        <img src="/storage/avatars/{{ $user->profile->image }}" alt="" class="rounded-circle">
+                        <img src="{{  Storage::disk('s3')->url('avatars/' . $user->profile->filename) }}" alt="" class="rounded-circle">
                             <!--Prod img src="{{  Storage::disk('s3')->url('avatars/' . $user->profile->filename) }}" -->
                         @else
                             <img src="https://www.recia.fr/wp-content/uploads/2018/10/default-avatar-300x300.png" alt="" class="rounded-circle">
@@ -45,7 +45,7 @@
                     <div class="col-6 mb-3">
                         <a href="{{ route('posts.show', ['post' => $post->id]) }}">
                             <!--Local Env img -->
-                        <img src="{{ asset('storage') . '/posts/' . $post->image }}" alt="" class="w-100">
+                        <img src="{{ Storage::disk('s3')->url('posts/' . $post->filename) }}" alt="" class="w-100">
                         <!--Prod img src="{{ Storage::disk('s3')->url('posts/' . $post->filename) }}" -->
                         </a>
                     </div>

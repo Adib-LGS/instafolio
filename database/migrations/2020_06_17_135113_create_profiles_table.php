@@ -18,7 +18,7 @@ class CreateProfilesTable extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable(); //Optional choice
             $table->string('url')->nullable();
-            //$table->string('filename')->nullable(); Prod Mode
+            $table->string('filename')->nullable(); //Prod Mode
             $table->string('image')->nullable();
             $table->unsignedBigInteger('user_id')->index(); //foreign key
             $table->timestamps();
