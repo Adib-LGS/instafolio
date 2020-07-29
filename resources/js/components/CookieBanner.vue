@@ -1,4 +1,4 @@
-<template>
+<!--<template>
     <p :class="isDisplayed ? 'block' : 'hidden' ">By continuing to browse this school project, you consent to our use of cookies to improve your online experience. 
         <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32017R1128&ampqid=1595942708334&ampfrom=EN#d1e707-1-1"> Learn More </a>
         <button type="button" @click="handleCookieStorageApproval">OK</button></p>
@@ -47,4 +47,4 @@ export default {
     },
 
 }
-</script>
+</script>-->

@@ -21,9 +21,7 @@
                         <div class="d-flex align-items-baseline">
                             <div class="h4 ml-3 mr-3 pt-2">{{ $user->username }}</div>
                             @can('follow', $user->profile)
-                            <div id="app">
                             <follow-button profile-id="{{ $user->profile->id }}" follows="{{ $follows }}"></follow-button>
-                            </div>
                             @endcan
                         </div>
                         <div class="d-flex mt-3 ml-3">

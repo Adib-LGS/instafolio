@@ -68,11 +68,11 @@
                 </div>
             </div>
         </section>
-            <div id="app2">
+           <!-- <div id="app2">
                     <div class="container">
                         <cookie-banner></cookie-banner>
                     </div>
-                </div>
+                </div>-->
         <!-- Signup-->
         <section class="signup-section" id="signup">
             <div class="container">
@@ -128,7 +128,7 @@
             <div class="container">Copyright © Adib Patrice Legastelois 2020</div>
         </footer>
         <!-- Bootstrap core JS-->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <!--<script src="{{ asset('js/app.js') }}" defer></script>-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
