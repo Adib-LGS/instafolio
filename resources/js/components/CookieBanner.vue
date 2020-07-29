@@ -39,6 +39,7 @@ export default {
         }
     },
 
+    //check
     mounted() {
         if (Cookies.get('user_has_agree_to_cookie_storage') === undefined) {
             this.isDisplayed = true;

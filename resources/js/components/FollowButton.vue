@@ -6,6 +6,8 @@
 
 <script>
     export default {
+
+        //check
         mounted() {
             console.log('Component mounted.')  
         },
