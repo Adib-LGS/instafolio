@@ -68,7 +68,7 @@
                 </div>
             </div>
         </section>
-            <div id="app2">
+            <div id="app">
                     <div class="container">
                         <cookie-banner></cookie-banner>
                     </div>
