@@ -32,3 +32,6 @@ Vue.component('cookie-banner', require('./components/CookieBanner.vue').default)
 const app = new Vue({
     el: '#app',
 });
+const app2 = new Vue({
+    el: '#app2',
+});
